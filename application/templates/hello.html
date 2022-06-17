@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<article class="container animate__animated animate__fadeIn">
+    <header>
+        
+    </header>
+<!-- safe is making Flask ignore the html tags -->
+
+<br>
+<div id="sub" class="shadowcard">
+    <h2 class="title">Malik is inviting you to join Moonwith Belt</h2>
+
+    <p>Join an exclusive community, be the first one to access new products and crash on Malik's couch.</p>
+    
+    <form class="newsletter" name="subscriptions">
+        <button type="submit" class="button-big">Accept Invite</button>
+    </form>
+    <small>By joining Moonwith, <a target="_blank" href="https://www.brynk.eco/our-projects">you'll be planting one tree at an endangered area.</a></small>
+</div>
+<br>
+</article>
+{% endblock %}
