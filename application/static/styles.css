@@ -104,6 +104,9 @@
   .person-container {
     background-color: #774c2814 !important;
     gap: 10px;
+    flex-direction: row !important;
+    min-width: 400px !important;
+    height: 100px;
   }
 
   .profile-picture-container {
@@ -127,6 +130,10 @@
     text-align: center;
     color: #c196d8;
     font-weight: 500;
+}
+
+.name-label {
+  font-size: 18px;
 }
 
   /* End of People Page */

@@ -2,7 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-users = ['Malik', 'John Snow']
+users = ['Malik Piara', 'John Snow', 'Clark Kent']
 
 
 @app.route("/")
