@@ -14,10 +14,10 @@
             <div class="person-container">
                 <div class="profile-picture-container">
                     <div class="profile-photo-initials">
-                        {{ user[0] }}{{ user[1] }}
+                        {{ user['first_name'][0] }}{{ user['last_name'][0] }}
                     </div>
                 </div>
-                <div class="name-label">{{ user }}</div>
+                <div class="name-label">{{ user['first_name'] }} {{ user['last_name'] }}</div>
             </div>
             {% endfor %}
             
