@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="main_section_grid">
+
+    <h2 class="">People</h2>
+    
+    <div class="flex_container">
+        
+        <div class="people-container">
+
+            {% for user in users %}
+            <div class="person-container">
+                <div class="profile-picture-container">
+                    <div class="profile-photo-initials">
+                        {{ user[0] }}
+                    </div>
+                </div>
+                <div>{{ user }}</div>
+            </div>
+            {% endfor %}
+            
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

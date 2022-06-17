@@ -98,6 +98,38 @@
   .invite-photo-mod img {
     max-width: 80px;
   }
+
+  /* People Page */
+
+  .person-container {
+    background-color: #774c2814 !important;
+    gap: 10px;
+  }
+
+  .profile-picture-container {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    z-index: 0;
+    display: block;
+    background-color: #f4e0ff;
+}
+
+.profile-photo-initials {
+    font-size: 22px;
+    overflow: hidden;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #c196d8;
+    font-weight: 500;
+}
+
+  /* End of People Page */
   
   .flex-container {
     display: flex;
