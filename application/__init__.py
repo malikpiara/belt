@@ -45,7 +45,9 @@ def get_users():
         entry = {
             "_id": user["_id"],
             "first_name": user["first_name"],
-            "last_name": user["last_name"]
+            "last_name": user["last_name"],
+            "location": user["location"],
+            "can_help_with": user["can_help_with"]
         }
 
         users.append(entry)
