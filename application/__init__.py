@@ -1,8 +1,13 @@
+from crypt import methods
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, url_for
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, TextAreaField, ValidationError, HiddenField, PasswordField, EmailField
+from wtforms.widgets import TextArea
+from wtforms.validators import DataRequired, Email, EqualTo, URL
 
 load_dotenv()
 app = Flask(__name__)
@@ -20,16 +25,58 @@ app.config.from_object(Config)
 
 db = Config.mongo.db
 
+# Start of Forms
+
+
+class SignUpForm(FlaskForm):
+    first_name = StringField("Type your first name",
+                             validators=([DataRequired()]))
+    last_name = StringField("Type your last name",
+                            validators=([DataRequired()]))
+    location = StringField("Type your current location",
+                           validators=([DataRequired()]))
+    description = StringField(
+        u'What can you do for the family?', widget=TextArea())
+    email = EmailField("Type your email", validators=[
+        DataRequired(), Email()])
+    password = PasswordField("Password", validators=[DataRequired(), EqualTo(
+        "password2", message="Passwords must match.")])
+    password2 = PasswordField("Confirm password", validators=[DataRequired()])
+    submit = SubmitField("Join Belt")
+
+    def validate_email_address(self, field):
+        email_address = field.data
+        if find_user_by_email(email=email_address):
+            #flash("Email already registered.")
+            raise ValidationError('Email already registered.')
+
+
+class SignIn(FlaskForm):
+    email_address = EmailField("Email", validators=[DataRequired(), Email()])
+    password = PasswordField("Password")
+    submit = SubmitField("Login")
 
 # Models
-def create_user(email_address, first_name, last_name, password):
+
+
+def find_user_by_email(email):
+    return db.users.find_one(
+        {
+            "email": email
+        }
+    )
+
+
+def create_user(first_name, last_name, location, can_help_with, email_address, password):
     hashed_pass = generate_password_hash(
         password)
     db.users.insert_one(
         {
-            "email": email_address,
             "first_name": first_name,
             "last_name": last_name,
+            "location": location,
+            "can_help_with": can_help_with,
+            "email": email_address,
             "password": hashed_pass,
             "account_status": "active",
         })
@@ -59,9 +106,23 @@ def hello_world():
     return render_template('hello.html')
 
 
-@app.route("/join")
+@app.route("/join", methods=['GET', 'POST'])
 def signup():
-    return render_template('signup.html')
+    form = SignUpForm()
+
+    if form.validate_on_submit():
+
+        create_user(first_name=form.first_name.data,
+                    last_name=form.last_name.data,
+                    location=form.location.data,
+                    can_help_with=form.description.data,
+                    email_address=form.email.data,
+                    password=form.password.data
+                    )
+
+        return redirect(url_for('people'))
+
+    return render_template('signup.html', form=form)
 
 
 @app.route("/login")

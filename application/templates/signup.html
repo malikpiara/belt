@@ -8,37 +8,21 @@
         
             <p>Join an exclusive community, comment on Moonwith's blog and crash on Malik's couch.</p>
 
-            <br/>
-
-            <input type="text" id="firstname" name="firstname" placeholder="Type your first name" autocomplete="off" required>
-            
-            <br/><br/>
-
-            <input type="text" id="lastname" name="lastname" placeholder="Type your last name" autocomplete="off" required>
-            
-            <br/><br/>
-
-            <input type="text" id="location" name="location" placeholder="Type your current location" autocomplete="off" required>
-            
-            <br/><br/>
-
-            <textarea id="help" name="help" placeholder="What can you do for the family? E.g. startup advice, yoga lessons, event organisation" autocomplete="off" required></textarea>
-            
-            <br/><br/>
-            
-            <input type="email" id="email" name="email" placeholder="Type your email" autocomplete="off" required>
-            
-            <br/><br/>
-
-            <input type="password" id="password" name="password" placeholder="Type your new password" autocomplete="off" required>
-
-            <br/><br/>
-
-            <input type="password" id="password2" name="password2" placeholder="Repeat your password" autocomplete="off" required>
-
-            <br/><br/>
-            
-            <button type="submit" class="button-big">Join Belt</button>
+            <form class="flex column gap20" id="subscribe" method="POST">
+                {{ form.hidden_tag() }}
+    
+                {{ form.first_name(placeholder="Type your first name") }}
+                {{ form.last_name(placeholder="Type your last name") }}
+    
+                {{ form.location(placeholder="Type your current location") }}
+                {{ form.description(placeholder="What can you do for the family? E.g. startup advice, yoga lessons, event organisation") }}
+    
+                {{ form.email(placeholder="Type your email") }}
+                {{ form.password(placeholder="Type your new password") }}
+                {{ form.password2(placeholder="Repeat your password") }}
+                
+                {{ form.submit(class="button-big") }}
+            </form>
 
             <br/><br/>
 

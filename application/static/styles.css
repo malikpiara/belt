@@ -103,6 +103,10 @@
     flex-direction: column;
   }
 
+  .gap20 {
+    gap: 20px;
+  }
+
   .invite-photo-mod {
     gap: 15px;
   }
