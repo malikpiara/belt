@@ -678,7 +678,7 @@
     }
   }
   
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     body {
       background-color: var(--body-bg-dark);
       color: var(--text-dark);
@@ -711,7 +711,7 @@
     #navbar-mobile {
       background-color: var(--body-bg-dark);
     }
-  }
+  } */
   
   /* Wall of People */
   
